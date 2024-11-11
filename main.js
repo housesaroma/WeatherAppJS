@@ -50,7 +50,38 @@ function createWeatherCard(data) {
         card.remove();
     });
 
+    // Add map to the card
+    addMapToCard(card, data.coord.lat, data.coord.lon);
+
     return card;
+}
+
+function addMapToCard(card, lat, lon) {
+    // Create map container
+    const mapContainer = document.createElement("div");
+    mapContainer.style.height = "200px";
+    mapContainer.style.marginTop = "12px";
+    card.appendChild(mapContainer);
+
+    // Initialize the map
+    const map = L.map(mapContainer, { attributionControl: false }).setView(
+        [lat, lon],
+        13
+    );
+
+    // Add OpenStreetMap tiles
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+    }).addTo(map);
+
+    // Add a marker
+    const marker = L.marker([lat, lon]).addTo(map);
+
+    // Ensure the map is centered on the marker
+    map.setView(marker.getLatLng(), 13);
+
+    // Update map size
+    map.invalidateSize();
 }
 
 function generateCardHTML(data, weatherIcon, locationName) {
