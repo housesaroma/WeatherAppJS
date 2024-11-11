@@ -16,33 +16,50 @@
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
-    <div class="container">
-        <div class="search-container">
-            <div class="search-mode">
-                <button class="mode-toggle active" data-mode="city">По городу</button>
-                <button class="mode-toggle" data-mode="coords">По координатам</button>
-            </div>
-            <div class="search-box">
-                <div class="search-input city-search active">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <input type="text" placeholder="Введите название города">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-mode">
+                    <button class="mode-toggle active" data-mode="city">
+                        По городу
+                    </button>
+                    <button class="mode-toggle" data-mode="coords">
+                        По координатам
+                    </button>
                 </div>
-                <div class="search-input coords-search">
-                    <i class="fa-solid fa-globe"></i>
-                    <input type="number" step="0.000001" placeholder="Широта (-90 до 90)" class="lat-input">
-                    <input type="number" step="0.000001" placeholder="Долгота (-180 до 180)" class="lon-input">
+                <div class="search-box">
+                    <div class="search-input city-search active">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <input
+                            type="text"
+                            placeholder="Введите название города"
+                        />
+                    </div>
+                    <div class="search-input coords-search">
+                        <i class="fa-solid fa-globe"></i>
+                        <input
+                            type="number"
+                            step="0.000001"
+                            placeholder="Широта (-90 до 90)"
+                            class="lat-input"
+                        />
+                        <input
+                            type="number"
+                            step="0.000001"
+                            placeholder="Долгота (-180 до 180)"
+                            class="lon-input"
+                        />
+                    </div>
+                    <button>
+                        <i class="fa-solid fa-plus"></i>
+                        Добавить
+                    </button>
                 </div>
-                <button>
-                    <i class="fa-solid fa-plus"></i>
-                    Добавить
-                </button>
+                <div class="error">
+                    <p>Неверные данные</p>
+                </div>
             </div>
-            <div class="error">
-                <p>Неверные данные</p>
-            </div>
+            <div class="weather-cards"></div>
         </div>
-        <div class="weather-cards"></div>
-    </div>
         <script type="module" src="./main.js"></script>
     </body>
 </html>
