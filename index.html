@@ -19,8 +19,15 @@
         />
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <link rel="stylesheet" href="./style.css" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        </style>
     </head>
     <body>
+        <header>
+            <h1>NEXT.WEATHER</h1>
+        </header>
+
         <div class="container">
             <div class="search-container">
                 <div class="search-mode">
@@ -30,6 +37,7 @@
                     <button class="mode-toggle" data-mode="coords">
                         По координатам
                     </button>
+                    <span class="slider"></span>
                 </div>
                 <div class="search-box">
                     <div class="search-input city-search active">
@@ -40,19 +48,24 @@
                         />
                     </div>
                     <div class="search-input coords-search">
-                        <i class="fa-solid fa-globe"></i>
-                        <input
-                            type="number"
-                            step="0.000001"
-                            placeholder="Широта (-90 до 90)"
-                            class="lat-input"
-                        />
-                        <input
-                            type="number"
-                            step="0.000001"
-                            placeholder="Долгота (-180 до 180)"
-                            class="lon-input"
-                        />
+                        <div class='coords-input'>
+                            <i class="fa-solid fa-globe"></i>
+                            <input
+                                    type="number"
+                                    step="0.000001"
+                                    placeholder="Широта (-90 до 90)"
+                                    class="lat-input"
+                            />
+                        </div>
+                        <div class='coords-input'>
+                            <i class="fa-solid fa-globe"></i>
+                            <input
+                                    type="number"
+                                    step="0.000001"
+                                    placeholder="Долгота (-180 до 180)"
+                                    class="lon-input"
+                            />
+                        </div>
                     </div>
                     <button>
                         <i class="fa-solid fa-plus"></i>

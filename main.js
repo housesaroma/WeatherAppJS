@@ -13,6 +13,7 @@ const lonInput = document.querySelector(".lon-input");
 const searchButton = document.querySelector(".search-box button");
 const errorText = document.querySelector(".error");
 const weatherCards = document.querySelector(".weather-cards");
+const slider = document.querySelector('.slider');
 
 // Обработчики для переключения режима поиска
 searchModeButtons.forEach((button) => {
@@ -21,9 +22,13 @@ searchModeButtons.forEach((button) => {
         button.classList.add("active");
 
         if (button.dataset.mode === "city") {
+            slider.style.left = '0';
+            slider.style.width = '40%'
             citySearch.classList.add("active");
             coordsSearch.classList.remove("active");
-        } else {
+        } if (button.dataset.mode === "coords") {
+            slider.style.left = '40%';
+            slider.style.width = '60%'
             citySearch.classList.remove("active");
             coordsSearch.classList.add("active");
         }
