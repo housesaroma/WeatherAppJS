@@ -1,4 +1,5 @@
 import { apiKey } from "./apikey.js";
+import {weatherIcons} from './iconMapping.js';
 const apiUrlByCoords = `https://api.openweathermap.org/data/2.5/weather?units=metric&lang=ru&appid=${apiKey}`;
 const apiUrlByCity = `https://api.openweathermap.org/data/2.5/weather?units=metric&lang=ru&appid=${apiKey}&q=`;
 const geocodingApiUrl = `https://api.openweathermap.org/geo/1.0/reverse?appid=${apiKey}&limit=1`;
@@ -89,8 +90,10 @@ function generateCardHTML(data, weatherIcon, locationName) {
             <i class="fa-solid fa-times"></i>
         </button>
         <div class="weather-info">
-            <i class="${weatherIcon}"></i>
-            <h1 class="temp">${Math.round(data.main.temp)}°C</h1>
+            <div class="weather-info-main">
+                <h1 class="temp">${Math.round(data.main.temp)}°C</h1>
+                <img src="${weatherIcon}" alt="weather icon" class="weather-icon">
+            </div>
             <h2 class="city">${locationName}</h2>
             <p class="coordinates">
                 ${data.coord.lat.toFixed(2)}°, ${data.coord.lon.toFixed(2)}°
@@ -118,18 +121,19 @@ function generateCardHTML(data, weatherIcon, locationName) {
 function getWeatherIcon(weatherMain) {
     switch (weatherMain) {
         case "Clear":
-            return "fa-solid fa-sun";
+            return weatherIcons['Clear'];
         case "Rain":
-            return "fa-solid fa-cloud-rain";
+            return weatherIcons['Rain'];
         case "Snow":
-            return "fa-solid fa-snowflake";
+            return weatherIcons['Snow'];
         case "Clouds":
-            return "fa-solid fa-cloud";
+            return weatherIcons['Clouds'];
         case "Mist":
+            return weatherIcons['Mist']
         case "Fog":
-            return "fa-solid fa-smog";
+            return weatherIcons['Fog'];
         default:
-            return "fa-solid fa-cloud";
+            return weatherIcons['Default'];
     }
 }
 

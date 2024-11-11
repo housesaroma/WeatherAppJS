@@ -224,11 +224,17 @@ header h1{
 }
 
 .weather-card {
-    background: #e3eeff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+}
+
+.weather-icon{
+    width:50px;
+    height: 50px;
+    object-fit: cover;
 }
 
 .remove-card {
@@ -254,6 +260,13 @@ header h1{
         margin-bottom: 10px;
         color: var(--primary-color);
     }
+}
+
+.weather-info-main {
+    display:flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
 }
 
 .temp {
