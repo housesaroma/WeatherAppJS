@@ -57,32 +57,26 @@ function createWeatherCard(data) {
 }
 
 function addMapToCard(card, lat, lon) {
-    // Create map container
     const mapContainer = document.createElement("div");
     mapContainer.style.height = "200px";
     mapContainer.style.marginTop = "12px";
     card.appendChild(mapContainer);
-
-    // Initialize the map
-    const map = L.map(mapContainer, { attributionControl: false }).setView(
-        [lat, lon],
-        13
-    );
-
-    // Add OpenStreetMap tiles
+    
+    const map = L.map(mapContainer, { attributionControl: false });
+    
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
     }).addTo(map);
-
-    // Add a marker
+    
     const marker = L.marker([lat, lon]).addTo(map);
-
-    // Ensure the map is centered on the marker
+    
     map.setView(marker.getLatLng(), 13);
-
-    // Update map size
-    map.invalidateSize();
+    
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 0);
 }
+
 
 function generateCardHTML(data, weatherIcon, locationName) {
     return `
@@ -140,9 +134,9 @@ function validateCoords(lat, lon) {
 
     if (isNaN(lat) || isNaN(lon)) return false;
     if (lat < -90 || lat > 90) return false;
-    if (lon < -180 || lon > 180) return false;
+    return !(lon < -180 || lon > 180);
 
-    return true;
+    
 }
 
 async function getCityNameFromCoords(lat, lon) {
