@@ -39,27 +39,35 @@ searchModeButtons.forEach((button) => {
 });
 
 function createWeatherCard(data) {
+    // Создаем родительский контейнер Card
+    const cardWrapper = document.createElement("div");
+    cardWrapper.classList.add("card", "weather-card-wrapper");
+    
+    // Создаем внутренний контент карты
     const card = document.createElement("div");
     card.classList.add("weather-card");
-
+    
     const weatherIcon = getWeatherIcon(data.weather[0].main);
     const locationName =
-        data.name ||
-        `Координаты: ${data.coord.lat.toFixed(2)}, ${data.coord.lon.toFixed(
-            2
-        )}`;
-
+      data.name ||
+      `Координаты: ${data.coord.lat.toFixed(2)}, ${data.coord.lon.toFixed(
+        2
+      )}`;
+    
     card.innerHTML = generateCardHTML(data, weatherIcon, locationName);
-
+    
     const removeButton = card.querySelector(".remove-card");
     removeButton.addEventListener("click", () => {
-        card.remove();
+        cardWrapper.remove(); // Удаляем весь wrapper
     });
-
+    
+    // Добавляем карточку во враппер
+    cardWrapper.appendChild(card);
+    
     // Add map to the card
     addMapToCard(card, data.coord.lat, data.coord.lon);
-
-    return card;
+    
+    return cardWrapper; // Возвращаем враппер
 }
 
 function addMapToCard(card, lat, lon) {
@@ -133,7 +141,7 @@ function getWeatherIcon(weatherMain) {
         case "Fog":
             return weatherIcons['Fog'];
         default:
-            return weatherIcons['Default'];
+            return weatherIcons['default'];
     }
 }
 
@@ -222,7 +230,14 @@ async function fetchWeatherData(url) {
 function displayError(message) {
     errorText.textContent = message;
     errorText.style.display = "block";
+    clearTimeout(errorText.timeout); // Удаляем предыдущий таймер, если он существует
+    
+    // Автоматически скрываем ошибку через 4 секунды
+    errorText.timeout = setTimeout(() => {
+        errorText.style.display = "none";
+    }, 4000);
 }
+
 
 function clearInputs(activeMode) {
     if (activeMode === "city") {
@@ -258,3 +273,5 @@ lonInput.addEventListener("keydown", (event) => {
         addWeatherCard();
     }
 });
+
+
