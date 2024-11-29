@@ -40,3 +40,6 @@ NEXT.WEATHER — это веб-приложение для отображени�
 1. Клонируйте репозиторий:
    ```bash
    git clone https://github.com/your-username/NEXT.WEATHER.git
+
+## Доступен по адресу
+ [Ссылка на сейт](http://coworking-urfu.me/WeatherAppJS/)
