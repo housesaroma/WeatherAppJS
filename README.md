@@ -42,4 +42,4 @@ NEXT.WEATHER — это веб-приложение для отображени�
    git clone https://github.com/your-username/NEXT.WEATHER.git
 
 ## Доступен по адресу
- [Ссылка на сейт](http://coworking-urfu.me/WeatherAppJS/)
+ [Ссылка на сайт](http://coworking-urfu.me/WeatherAppJS/)
